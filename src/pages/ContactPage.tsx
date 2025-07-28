@@ -107,17 +107,17 @@ export default function ContactPage() {
 
       <main className="isolate">
         {/* Contact Form Section */}
-        <div className="isolate bg-white px-6 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:px-8">
+        <div className="isolate bg-white px-6 pt-40 pb-24 sm:pt-48 sm:pb-32 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2 lg:items-center">
               {/* Left Column - Contact Form */}
               <div>
                 <div className="mx-auto max-w-2xl lg:mx-0">
                   <h2 className="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-4xl">Trabalha Conosco</h2>
                   <p className="mt-4 text-lg/8 text-gray-600">Todas os grandes projetos começam com uma conversa. Entre em contacto conosco</p>
                 </div>
-                <form action="#" method="POST" className="mt-12">
-                  <div className="grid grid-cols-1 gap-x-8 gap-y-6">
+                <form action="#" method="POST" className="mt-8">
+                  <div className="grid grid-cols-1 gap-x-8 gap-y-4">
                     <div>
                       <label htmlFor="name" className="block text-sm/6 font-semibold text-gray-900">
                         Nome
@@ -178,7 +178,7 @@ export default function ContactPage() {
                   <div className="mt-10">
                     <button
                       type="submit"
-                      className="block w-full rounded-md bg-[#6C4F9C] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-[#5a3f7a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6C4F9C]"
+                      className="rounded-md bg-[#6C4F9C] px-8 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-[#5a3f7a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6C4F9C]"
                     >
                       Enviar
                     </button>
