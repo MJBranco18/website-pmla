@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from './assets/logo.png';
 import logo2 from './assets/logo2.png';
 import city from './assets/city.png';
@@ -18,6 +18,7 @@ const navigation = [
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <div className="bg-white min-h-screen w-full flex flex-col font-['Montserrat']">
@@ -39,7 +40,15 @@ export default function HomePage() {
               {/* Desktop Navigation */}
               <div className="hidden lg:flex gap-x-16">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={item.href} className="text-xl font-normal text-gray-800 hover:text-purple-700 transition-colors">
+                  <Link 
+                    key={item.name} 
+                    to={item.href} 
+                    className={`text-xl transition-colors ${
+                      location.pathname === item.href 
+                        ? 'font-bold text-[#6C4F9C]' 
+                        : 'font-normal text-gray-800 hover:text-purple-700'
+                    }`}
+                  >
                     {item.name}
                   </Link>
                 ))}
@@ -126,7 +135,11 @@ export default function HomePage() {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                    className={`-mx-3 block rounded-lg px-3 py-2 text-base hover:bg-gray-50 ${
+                      location.pathname === item.href 
+                        ? 'font-bold text-[#6C4F9C]' 
+                        : 'font-semibold text-gray-900'
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}

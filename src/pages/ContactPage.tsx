@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo2 from '../assets/logo2.png';
+import logo from '../assets/logo.png';
 import Footer from '../components/Footer';
 
 const navigation = [
@@ -16,6 +17,7 @@ const navigation = [
 
 export default function ContactPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   return (
     <div className="bg-white font-['Montserrat']">
@@ -44,7 +46,15 @@ export default function ContactPage() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-xl font-normal text-gray-800 hover:text-purple-700 transition-colors">
+              <Link 
+                key={item.name} 
+                to={item.href} 
+                className={`text-xl transition-colors ${
+                  location.pathname === item.href 
+                    ? 'font-bold text-[#6C4F9C]' 
+                    : 'font-normal text-gray-800 hover:text-purple-700'
+                }`}
+              >
                 {item.name}
               </Link>
             ))}
@@ -78,7 +88,11 @@ export default function ContactPage() {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base hover:bg-gray-50 ${
+                        location.pathname === item.href 
+                          ? 'font-bold text-[#6C4F9C]' 
+                          : 'font-semibold text-gray-900'
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -93,16 +107,16 @@ export default function ContactPage() {
 
       <main className="isolate">
         {/* Contact Form Section */}
-        <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div className="isolate bg-white px-6 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
               {/* Left Column - Contact Form */}
               <div>
                 <div className="mx-auto max-w-2xl lg:mx-0">
-                  <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Trabalha Conosco</h2>
-                  <p className="mt-2 text-lg/8 text-gray-600">Todas os grandes projetos começam com uma conversa. Entre em contacto conosco</p>
+                  <h2 className="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-4xl">Trabalha Conosco</h2>
+                  <p className="mt-4 text-lg/8 text-gray-600">Todas os grandes projetos começam com uma conversa. Entre em contacto conosco</p>
                 </div>
-                <form action="#" method="POST" className="mt-16">
+                <form action="#" method="POST" className="mt-12">
                   <div className="grid grid-cols-1 gap-x-8 gap-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm/6 font-semibold text-gray-900">
@@ -175,11 +189,13 @@ export default function ContactPage() {
               {/* Right Column - Contact Information */}
               <div className="flex flex-col items-start">
                 <div className="mb-8">
-                  <img
-                    alt="PMLA Logo"
-                    src={logo2}
-                    className="h-24 w-auto"
-                  />
+                  <div className="flex items-center gap-3">
+                    <img
+                      alt="PMLA Logo"
+                      src={logo}
+                      className="h-36 w-auto"
+                    />
+                  </div>
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">

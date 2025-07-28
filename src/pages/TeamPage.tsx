@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo2 from '../assets/logo2.png';
 import Footer from '../components/Footer';
 
@@ -11,7 +11,7 @@ const navigation = [
   { name: 'Sobre Nós', href: '/sobre-nos' },
   { name: 'Equipa', href: '/equipa' },
   { name: 'Áreas de Atuação', href: '#' },
-  { name: 'Contactos', href: '#' },
+  { name: 'Contactos', href: '/contactos' },
 ]
 
 const people = [
@@ -91,6 +91,7 @@ const people = [
 
 export default function TeamPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   return (
     <div className="bg-white font-['Montserrat']">
@@ -119,7 +120,15 @@ export default function TeamPage() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-xl font-normal text-gray-800 hover:text-purple-700 transition-colors">
+              <Link 
+                key={item.name} 
+                to={item.href} 
+                className={`text-xl transition-colors ${
+                  location.pathname === item.href 
+                    ? 'font-bold text-[#6C4F9C]' 
+                    : 'font-normal text-gray-800 hover:text-purple-700'
+                }`}
+              >
                 {item.name}
               </Link>
             ))}
@@ -153,7 +162,11 @@ export default function TeamPage() {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base hover:bg-gray-50 ${
+                        location.pathname === item.href 
+                          ? 'font-bold text-[#6C4F9C]' 
+                          : 'font-semibold text-gray-900'
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -167,34 +180,18 @@ export default function TeamPage() {
       </header>
 
       <main className="isolate">
-        {/* Hero section */}
-        <div className="relative isolate -z-10 pt-36">
-          <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
-            <div className="mx-auto max-w-2xl lg:mx-0">
-              <h1 className="text-pretty text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-                A nossa equipa
-              </h1>
-              <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
-                Somos uma equipa dinâmica de profissionais apaixonados pelo que fazemos e dedicados a entregar os melhores 
-                resultados para os nossos clientes.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Team section */}
-        <div className="bg-white py-24 sm:py-32">
+        <div className="bg-white pt-40 pb-24 sm:pt-48 sm:pb-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
-              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">Conheça a nossa equipa</h2>
+              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">A Nossa Equipa</h2>
               <p className="mt-6 text-lg/8 text-gray-600">
-                Somos uma equipa dinâmica de indivíduos apaixonados pelo que fazemos e dedicados a entregar os melhores 
-                resultados para os nossos clientes.
+                Na PMLA Investments, são as pessoas que tornam a visão possível, líderes com experiência, visão estratégica e compromisso com os nossos valores.
               </p>
             </div>
             <ul
               role="list"
-              className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+              className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
             >
               {people.map((person) => (
                 <li key={person.name}>
